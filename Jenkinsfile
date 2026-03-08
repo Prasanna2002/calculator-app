@@ -41,8 +41,5 @@ pipeline {
                  subject: "Failure: Pipeline ${currentBuild.fullDisplayName}",
                  body: "Something went wrong. Please check the console output at ${env.BUILD_URL}"
         }
-        success {
-            echo 'Build successful! Artifact created in target/'
-        }
     }
 }
