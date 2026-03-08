@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        DOCKER_HUB_USER = 'prasanna07e'
-        IMAGE_NAME = 'scientific-calculator'
-        IMAGE_TAG = "${env.BUILD_NUMBER}"
-    }
     triggers {
         githubPush()
     }
@@ -30,22 +25,6 @@ pipeline {
                 sh 'mvn package'
             }
         } 
-        stage('Docker Build & Push') {
-            steps {
-                script {
-                    // Build the image
-                    sh "docker build -t ${DOCKER_HUB_USER}/${IMAGE_NAME}:${IMAGE_TAG} ."
-                    sh "docker tag ${DOCKER_HUB_USER}/${IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_HUB_USER}/${IMAGE_NAME}:latest"
-                    
-                    // Log in and push
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', passwordVariable: 'DOCKER_HUB_PASSWORD', usernameVariable: 'DOCKER_HUB_USERNAME')]) {
-                        sh "echo \$DOCKER_HUB_PASSWORD | docker login -u \$DOCKER_HUB_USERNAME --password-stdin"
-                        sh "docker push ${DOCKER_HUB_USER}/${IMAGE_NAME}:${IMAGE_TAG}"
-                        sh "docker push ${DOCKER_HUB_USER}/${IMAGE_NAME}:latest" 
-                    }
-                } 
-            } 
-        }
     }
     post {
         always {
