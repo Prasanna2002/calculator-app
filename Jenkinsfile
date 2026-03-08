@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Prasanna2002/calculator-app.git'
+                checkout scm
             }
         }
         stage('Build') {
