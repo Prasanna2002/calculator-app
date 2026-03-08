@@ -3,7 +3,6 @@ package com.calc;
 import java.util.Scanner;
 
 public class Calculator {
-    // Let's Do this
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean condition = true;
