@@ -43,7 +43,9 @@ pipeline {
                         sh "docker push ${DOCKER_HUB_USER}/${IMAGE_NAME}:${IMAGE_TAG}"
                         sh "docker push ${DOCKER_HUB_USER}/${IMAGE_NAME}:latest" 
                     }
-                }
+                } 
+            } 
+        }
     }
     post {
         always {
@@ -60,5 +62,6 @@ pipeline {
                  subject: "Failure: Pipeline ${currentBuild.fullDisplayName}",
                  body: "Something went wrong. Please check the console output at ${env.BUILD_URL}"
         }
-    }
+    } 
 }
+        
