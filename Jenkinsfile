@@ -32,12 +32,12 @@ pipeline {
             junit '**/target/surefire-reports/*.xml'
         }
         success {
-            mail to: 'your-email@example.com',
+            mail to: 'prasannakumarm024@gmail.com',
                  subject: "Success: Pipeline ${currentBuild.fullDisplayName}",
                  body: "Great job! The build and tests passed. Check it out at ${env.BUILD_URL}"
         }
         failure {
-            mail to: 'your-email@example.com',
+            mail to: 'prasannakumarm024@gmail.com',
                  subject: "Failure: Pipeline ${currentBuild.fullDisplayName}",
                  body: "Something went wrong. Please check the console output at ${env.BUILD_URL}"
         }
