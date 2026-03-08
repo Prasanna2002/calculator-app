@@ -1,19 +1,10 @@
-
-
 pipeline {
     agent any
-    
-    tools {
-        // This must match the 'Name' you gave Maven in 
-        // Manage Jenkins -> Global Tool Configuration
-        maven 'Maven 3' 
-    }
 
     stages {
         stage('Checkout') {
             steps {
-                // Explicitly defining the branch helps avoid detection issues
-                git branch: 'main', url: 'https://github.com/Prasanna2002/calculator-SPE.git'
+                git 'https://github.com/Prasanna2002/calculator-app.git'
             }
         }
         stage('Build') {
@@ -25,6 +16,16 @@ pipeline {
             steps {
                 sh 'mvn test'
             }
+        }
+        stage('Package') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+    }
+    post {
+        success {
+            echo 'Build successful! Artifact created in target/'
         }
     }
 }
