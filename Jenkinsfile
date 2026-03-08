@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HUB_USER = 'Prasanna.M@iitb.ac.in'
+        DOCKER_HUB_USER = 'prasanna07e'
         IMAGE_NAME = 'scientific-calculator'
         IMAGE_TAG = "${env.BUILD_NUMBER}"
     }
