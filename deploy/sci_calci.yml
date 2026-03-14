@@ -20,7 +20,7 @@
         interactive: yes
         tty: yes
         # Optional: auto-remove container when it stops to save space
-        #auto_remove: yes
+        auto_remove: yes
 
 
 
