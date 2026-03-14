@@ -14,7 +14,7 @@ public class Calculator {
         double number1, number2;
         do {
             System.out.println("Choose to perform operation");
-            System.out.print("Type 1 to find factorial\nType 2 to find Square root\nType 3 to find power\nType 4 to find natural logarithm\n" +
+            System.out.print("Type 1 to find Square root\nType 2 to find  Factorial\nType 3 to find power\nType 4 to find natural logarithm\n" +
                     "Type any other digit to exit\nEnter the type of operation: ");
             int ch;
             try {
@@ -29,10 +29,7 @@ public class Calculator {
                     number1 = scanner.nextDouble();
                     System.out.println("Square root of "+number1+" is : " + c.sqroot(number1));
                     System.out.println("\n");
-                    System.out.print("Enter a number : ");
-                    number1 = scanner.nextDouble();
-                    System.out.println("Factorial of "+number1+" is : " + c.fact(number1));
-                    System.out.println("\n");
+
 
                     break;
                 case 2:
