@@ -1,52 +1,131 @@
 package com.calc;
-
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Calculator {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        boolean condition = true;
-        do{
-            System.out.println("\n----- Scientific Calculator------\n");
-            System.out.println("1. Square Root\n2. Factorial\n3. Natural Log (ln)\n4. Power Function");
-            System.out.print("Choose an option: ");
-            int choice = scanner.nextInt();
 
-            switch (choice) {
+
+
+public class Calculator {
+    public static void main(String[] args)
+    {
+
+        Calculator c=new Calculator();
+        Scanner scanner = new Scanner(System.in);
+        double number1, number2;
+        do {
+            System.out.println("Choose to perform operation");
+            System.out.print("Type 1 to find factorial\nType 2 to find Square root\nType 3 to find power\nType 4 to find natural logarithm\n" +
+                    "Type any other digit to exit\nEnter the type of operation: ");
+            int ch;
+            try {
+                ch = scanner.nextInt();
+            } catch (InputMismatchException error) {
+                return;
+            }
+
+            switch (ch) {
                 case 1:
-                    System.out.print("Enter number: ");
-                    double a = scanner.nextDouble();
-                    System.out.println("Result: " + Math.sqrt(a));
+                    System.out.print("Enter a number : ");
+                    number1 = scanner.nextDouble();
+                    System.out.println("Square root of "+number1+" is : " + c.sqroot(number1));
+                    System.out.println("\n");
+                    System.out.print("Enter a number : ");
+                    number1 = scanner.nextDouble();
+                    System.out.println("Factorial of "+number1+" is : " + c.fact(number1));
+                    System.out.println("\n");
+
                     break;
                 case 2:
-                    System.out.print("Enter integer: ");
-                    int num = scanner.nextInt();
-                    System.out.println("Result: " + factorial(num));
+                    System.out.print("Enter a number : ");
+                    number1 = scanner.nextDouble();
+                    System.out.println("Factorial of "+number1+" is : " + c.fact(number1));
+                    System.out.println("\n");
+
+
                     break;
                 case 3:
-                    System.out.print("Enter number: ");
-                    double b = scanner.nextDouble();
-                    System.out.println("Result: " + Math.log(b));
+                    // find power of entered numbers
+                    System.out.print("Enter the first number : ");
+                    number1 = scanner.nextDouble();
+                    System.out.print("Enter the second number : ");
+                    number2 = scanner.nextDouble();
+                    System.out.println(number1+ " raised to power "+number2+" is : " + c.power(number1, number2));
+                    System.out.println("\n");
                     break;
                 case 4:
-                    System.out.print("Enter base: ");
-                    double base = scanner.nextDouble();
-                    System.out.print("Enter exponent: ");
-                    double exp = scanner.nextDouble();
-                    System.out.println("Result: " + Math.pow(base, exp));
+                    System.out.print("Enter a number : ");
+                    number1 = scanner.nextDouble();
+                    System.out.println("Natural log of "+number1+" is : " + c.naturalLog(number1));
+                    System.out.println("\n");
+
                     break;
-                default: 
-                    System.out.println("Exiting....\n"); 
-                    condition = false;
+                default:
+                    System.out.println("Exiting....");
                     scanner.close();
-                    break; 
+                    return;
             }
-        } while (condition == true); 
+        } while (true);
     }
 
-    public static long factorial(int n) {
-        long res = 1;
-        for (int i = 1; i <= n; i++) res *= i;
-        return res;
+
+    public double fact(double number1) {
+        //for error we implement logger.error
+        if(number1<0)
+        {
+            return Double.NaN;
+        }
+        double fact=1;
+        for(int i=2;i<=number1;i++)
+            fact=fact*i;
+       // double result = fact(number1);
+        return fact;
     }
+
+
+
+    public double sqroot(double number1) {
+        double result = 0;
+        try {
+
+            if (number1 <0 ) {
+                result = Double.NaN;
+                throw new ArithmeticException("Case of NaN 0.0");
+            }
+            else {
+                result = Math.sqrt(number1);
+            }
+        } catch (ArithmeticException error) {
+            System.out.println("Cannot find log of negative numbers " + error.getLocalizedMessage());
+        }
+        return result;
+    }
+
+
+    public double power(double number1, double number2) {
+        double result = Math.pow(number1,number2);
+        return result;
+    }
+
+    public double naturalLog(double number1) {
+        double result = 0;
+        try {
+
+            if (number1 <0 ) {
+                result = Double.NaN;
+                throw new ArithmeticException("Case of NaN 0.0/0.0");
+            }
+            else {
+                result = Math.log(number1);
+            }
+        } catch (ArithmeticException error) {
+            System.out.println("Cannot find log of negative numbers " + error.getLocalizedMessage());
+        }
+        return result;
+    }
+//    public double add(long n1, long n2) {
+//        logger.info("[Add " + n1 + " TO] " + n2);
+//        long result = Math.addExact(n1,n2);
+//        logger.info("[RESULT - ADDITION] - " + result);
+//        return result;
+//    }
 }
