@@ -22,7 +22,7 @@ pipeline {
                 sh 'mvn package'
             }
         }
-        //checking
+        
         stage('Build Docker Image') {
             steps {
                 script {
