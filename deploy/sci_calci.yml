@@ -15,7 +15,6 @@
       community.docker.docker_container:
         name: scientific_calc_container
         state: absent
-        # This ensures it stops the container before deleting
         force_kill: false
         
     - name: Create and start the calculator container
