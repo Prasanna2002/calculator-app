@@ -1,10 +1,7 @@
 pipeline {
     agent any
-
-    triggers {
-        githubPush()
-    }
-    stages {
+    stages 
+    {
         stage('Checkout') {
             steps {
                 checkout scm
@@ -24,11 +21,43 @@ pipeline {
             steps {
                 sh 'mvn package'
             }
-        } 
+        }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    sh "docker build -t prasanna07e/calculator-app_m:latest  ."
+                } 
+            } 
+        }
+
+        stage('Push to Docker Hub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', 
+                                 passwordVariable: 'DOCKER_HUB_PASSWORD', 
+                                 usernameVariable: 'DOCKER_HUB_USERNAME')]) {
+                    
+                    // Secure login using stdin to avoid password showing in 'ps' or logs
+                    sh "echo ${DOCKER_HUB_PASSWORD} | docker login -u ${DOCKER_HUB_USERNAME} --password-stdin"
+                    
+                    // Push the specific build version
+                    sh "docker push prasanna07e/calculator-app_m:latest"
+                    
+                }
+            }
+        }
+        stage('Deploy to Environment') {
+            steps {
+                ansiblePlaybook(
+                    playbook: 'deploy/sci_calci.yml',
+                    inventory: 'deploy/inventory.ini',
+                    colorized: true
+                )
+            }
+        }
     }
+
     post {
         always {
-            // This ensures JUnit results are visible in the Jenkins UI
             junit '**/target/surefire-reports/*.xml'
         }
         success {
