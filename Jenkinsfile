@@ -49,11 +49,6 @@ pipeline {
                 script {
                     sh "ansible-playbook -i deploy/inventory.ini deploy/sci_calci.yml"
                 }
-                
-                //ansiblePlaybook(
-                  //  playbook: 'deploy/sci_calci.yml',
-                    //inventory: 'deploy/inventory.ini',
-                ///)
             }
         }
     }
