@@ -15,11 +15,13 @@ public class Calculator {
         do {
             System.out.println("Choose to perform operation");
             System.out.print("Type 1 to find Square root\nType 2 to find  Factorial\nType 3 to find power\nType 4 to find natural logarithm\n" +
-                    "Type any other digit to exit\nEnter the type of operation: ");
+                    "Type 5 to find Squaring of number by Itself\nType any other digit to exit\nEnter the type of operation: ");
             int ch;
+
             try {
                 ch = scanner.nextInt();
             } catch (InputMismatchException error) {
+                scanner.close();
                 return;
             }
 
@@ -55,7 +57,12 @@ public class Calculator {
                     number1 = scanner.nextDouble();
                     System.out.println("Natural log of "+number1+" is : " + c.naturalLog(number1));
                     System.out.println("\n");
+                    break;
 
+                case 5:
+                    System.out.println("Enter a number:"); 
+                    number1 = scanner.nextDouble(); 
+                    System.out.println("Result of multiplying the number by itself is "+c.power(number1,number1)); 
                     break;
                 default:
                     System.out.println("Exiting....");
