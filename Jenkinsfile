@@ -36,7 +36,6 @@ pipeline {
                                  passwordVariable: 'DOCKER_HUB_PASSWORD', 
                                  usernameVariable: 'DOCKER_HUB_USERNAME')]) {
                     
-                    // Secure login using stdin to avoid password showing in 'ps' or logs
                     sh "echo ${DOCKER_HUB_PASSWORD} | docker login -u ${DOCKER_HUB_USERNAME} --password-stdin"
                     
                     // Push the specific build version
