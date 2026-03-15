@@ -63,7 +63,6 @@ pipeline {
                  subject: "Success: Pipeline ${currentBuild.fullDisplayName}",
                  body: "Great job! The build and tests passed. Check it out at ${env.BUILD_URL}"
         }
-        //commenting
         failure {
             mail to: 'prasannakumarm024@gmail.com',
                  subject: "Failure: Pipeline ${currentBuild.fullDisplayName}",
