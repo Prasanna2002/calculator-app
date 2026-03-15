@@ -54,7 +54,7 @@ pipeline {
     }
 
     post {
-        //commenting
+        
         always {
             junit '**/target/surefire-reports/*.xml'
         }
