@@ -24,8 +24,7 @@
         state: started
         interactive: yes
         tty: yes
-        detach: yes 
-        auto_remove: no
+
 
 
 

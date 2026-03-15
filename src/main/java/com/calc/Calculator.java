@@ -15,7 +15,7 @@ public class Calculator {
         do {
             System.out.println("Choose to perform operation");
             System.out.print("Type 1 to find Square root\nType 2 to find  Factorial\nType 3 to find power\nType 4 to find natural logarithm\n" +
-                    "Type 5 to find Squaring of number by Itself\nType any other digit to exit\nEnter the type of operation: ");
+                    "\nType any other digit to exit\nEnter the type of operation: ");
             int ch;
 
             try {
@@ -27,7 +27,6 @@ public class Calculator {
 
             switch (ch) {
                 case 1:
-                    // FInding
                     System.out.print("Enter a number : ");
                     number1 = scanner.nextDouble();
                     System.out.println("Square root of "+number1+" is : " + c.sqroot(number1));
@@ -44,7 +43,6 @@ public class Calculator {
 
                     break;
                 case 3:
-                    // find power of entered numbers
                     System.out.print("Enter the first number : ");
                     number1 = scanner.nextDouble();
                     System.out.print("Enter the second number : ");
@@ -59,11 +57,11 @@ public class Calculator {
                     System.out.println("\n");
                     break;
 
-                case 5:
-                    System.out.println("Enter a number:"); 
-                    number1 = scanner.nextDouble(); 
-                    System.out.println("Result of multiplying the number by itself is "+c.power(number1,number1)); 
-                    break;
+                // case 5:
+                //     System.out.println("Enter a number:"); 
+                //     number1 = scanner.nextDouble(); 
+                //     System.out.println("Result of multiplying the number by itself is "+c.power(number1,number1)); 
+                //     break;
                 default:
                     System.out.println("Exiting....");
                     scanner.close();
@@ -74,7 +72,6 @@ public class Calculator {
 
 
     public double fact(double number1) {
-        //for error we implement logger.error
         if(number1<0)
         {
             return Double.NaN;
@@ -82,7 +79,6 @@ public class Calculator {
         double fact=1;
         for(int i=2;i<=number1;i++)
             fact=fact*i;
-       // double result = fact(number1);
         return fact;
     }
 
@@ -127,10 +123,4 @@ public class Calculator {
         }
         return result;
     }
-//    public double add(long n1, long n2) {
-//        logger.info("[Add " + n1 + " TO] " + n2);
-//        long result = Math.addExact(n1,n2);
-//        logger.info("[RESULT - ADDITION] - " + result);
-//        return result;
-//    }
 }
