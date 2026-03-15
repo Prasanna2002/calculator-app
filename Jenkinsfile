@@ -48,7 +48,7 @@ pipeline {
                 ansiblePlaybook(
                     playbook: 'deploy/sci_calci.yml',
                     inventory: 'deploy/inventory.ini',
-                    colorized: true
+                    //colorized: true
                 )
             }
         }
