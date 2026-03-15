@@ -2,7 +2,7 @@
 - name: Deploy Interactive Scientific Calculator
   hosts: localhost
   connection: local
-  become: yes  # Required to interact with the Docker daemon
+  become: yes 
   
   tasks:
     - name: Pull the latest image from Docker Hub
@@ -11,15 +11,20 @@
         tag: latest
         source: pull
 
-    - name: Creaste and start the calculator container
+    - name: Remove old container (if it exists)
       community.docker.docker_container:
         name: scientific_calc_container
-        image: prasanna07e/calculator-app:v1
+        state: absent
+        # This ensures it stops the container before deleting
+        force_kill: false
+        
+    - name: Create and start the calculator container
+      community.docker.docker_container:
+        name: scientific_calc_container
+        image: prasanna07e/calculator-app_m:latest
         state: started
-        # These two settings are CRITICAL for interactive CLI apps
         interactive: yes
         tty: yes
-        # Optional: auto-remove container when it stops to save space
         auto_remove: no
 
 
