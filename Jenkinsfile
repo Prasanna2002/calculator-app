@@ -38,7 +38,6 @@ pipeline {
                     
                     sh "echo ${DOCKER_HUB_PASSWORD} | docker login -u ${DOCKER_HUB_USERNAME} --password-stdin"
                     
-                    // Push the specific build version
                     sh "docker push prasanna07e/calculator-app_m:latest"
                     
                 }
